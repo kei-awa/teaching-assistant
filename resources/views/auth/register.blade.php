@@ -24,15 +24,16 @@
                 
                 <div class="form-group">
                     {!! Form::label('password_confirmation', 'Confirm') !!}
-                    {!! Form::text('password_confirmation', ['class'=> 'form-control']) !!}
+                    {!! Form::password('password_confirmation', ['class'=> 'form-control']) !!}
                 </div>
                 
                 <div class="form-group">
                     {!! Form::label('profile', 'Profile') !!}
-                    {!! Form::text('profile', old('profile'), ['class'=> 'form-control', 'row' => '3']) !!}
+                    {!! Form::textarea('profile', old('profile'), ['class'=> 'form-control', 'rows' => '3']) !!}
                 </div>
                 {!! Form::submit('登録', ['class'=> 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
                 
         </div>
     </div>
+@endsection
