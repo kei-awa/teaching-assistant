@@ -12,7 +12,7 @@
                 <li class="nav-item"><a href="#" class="nav-link">Topics</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Q&A</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">ログイン</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">ユーザー登録</a></li>
+                <li class="nav-item">{!! link_to_route('signup.get', 'ユーザー登録', [], ['class' => 'nav-link'])!!}</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">利用規約</a></li>
             </ul>
         </div>
