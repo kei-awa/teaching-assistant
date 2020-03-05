@@ -10,9 +10,9 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                            <li class="nav-item"><a href="#" class="nav-link">Topics</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Q&A</a></li>
-                            <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト' !!}</li>
+                        <li class="nav-item"><a href="#" class="nav-link">Topics</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Q&A</a></li>
+                        <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
                 @else
                     <li class="nav-item"><a href="#" class="nav-link">Topics</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Q&A</a></li>
