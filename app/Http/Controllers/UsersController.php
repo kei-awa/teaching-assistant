@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Question;
 
 class UsersController extends Controller
 {
@@ -85,5 +86,14 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function question ()
+    {
+        if (Auth::check())
+        {
+            return view('questions.create');
+        } else {
+            return redirect ('/');
+        }
     }
 }
