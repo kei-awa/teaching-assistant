@@ -9,6 +9,8 @@ class UserQuestionController extends Controller
 {
     public function question()
     {
-        return view('questions.create');
+        if (\Auth::check()) {
+            return view('questions.create');
+        }
     }
 }

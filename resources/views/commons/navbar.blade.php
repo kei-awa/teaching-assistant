@@ -10,12 +10,12 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                        <li class="nav-item"><a href="#" class="nav-link">Topics</a></li>
+                        <li class="nav-item">{!! link_to_route('articles.titles', 'Topics', [], ['class' => 'nav-link']) !!}</li>
                         <li class="nav-item">{!! link_to_route('question.titles', 'Q&A', [], ['class'=>'nav-link']) !!}</a></li>
-                        <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
+                        <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト',[], ['class'=>'nav-link']) !!}</li>
                 @else
-                    <li class="nav-item"><a href="#" class="nav-link">Topics</a></li>
-                    <li class="nav-item">{!! link_to_route('question.titles', 'Q&A', [], ['class'=>'nav-link']) !!}</a></li>
+                    <li class="nav-item">{!! link_to_route('articles.titles', 'Topics', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('question.titles', 'Q&A', [], ['class'=>'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link'])!!}</li>
                     <li class="nav-item">{!! link_to_route('signup.get', 'ユーザー登録', [], ['class' => 'nav-link'])!!}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">利用規約</a></li>

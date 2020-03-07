@@ -10,10 +10,14 @@ class QuestionsController extends Controller
 {
     public function index()
     {
+        
         $questions = Question::all();
+        $titles = Question::select('title')->get();
+        $title = Question::select('id');
         
         return view('questions.titles',[
             'questions' => $questions,
+            'titles' => $titles,
             ]);
     }
     public function show($id)
@@ -29,7 +33,7 @@ class QuestionsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|max:100',
-            'content' => 'required|max:300',
+            'content' => 'required|max:250',
             ]);
             
         $request->user()->questions()->create([
