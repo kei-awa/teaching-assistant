@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Question;
 
 class QuestionsController extends Controller
 {
     public function index()
     {
-        $questions = Question::orderby('id','desc')->paginate(10);
+        $questions = Question::all();
         
-        return view('question.titles',[
-            'quetions' => $questions,
+        return view('questions.titles',[
+            'questions' => $questions,
             ]);
     }
     public function show($id)
     {
         $question = Question::find($id);
         
-        return view('quetion.content',[
+        return view('questions.content',[
             'question' => $question,
             ]);
     }
@@ -30,12 +32,14 @@ class QuestionsController extends Controller
             'content' => 'required|max:300',
             ]);
             
-        $requiest->user()->questions()->create([
+        $request->user()->questions()->create([
             'title' => $request->title,
             'content' => $request->content,
             ]);
+            $user= \Auth::user();
             
-            return view('users.show');
+            return view('users.show', [
+                'user' => $user]);
     }
     public function destroy()
     {

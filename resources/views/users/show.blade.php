@@ -15,14 +15,14 @@
         <div class="row">
             <ul class="nav nav-tabs navjustified mt-3">
                 <li class="nav-item"><a href="#" class="nav-link">過去の投稿</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">過去の質問</a></li>
+                <li class="nav-item"><a href= "{{ route('loginquestion.titles', ['id' => $user->id]) }}" class="nav-link">過去の質問</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">解決済み</a></li>
             </ul>
         </div>
         <div class='col-6 offset-6'>
             <ul>
-                <li><a href='#'>記事を投稿する</a></li>
-                <li><a href="#">質問する</a></li>
+                <li>{{ link_to_route('user.question', '質問する' ,['user' => $user]) }}</li>
+                <li><a href="#">記事を投稿する</a></li>
             </ul>
         </div>
 @endsection

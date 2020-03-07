@@ -87,13 +87,6 @@ class UsersController extends Controller
     {
         //
     }
-    public function question ()
-    {
-        if (Auth::check())
-        {
-            return view('questions.create');
-        } else {
-            return redirect ('/');
-        }
-    }
+    
+    
 }

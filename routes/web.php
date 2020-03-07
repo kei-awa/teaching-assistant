@@ -23,7 +23,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
     //ログアウト&ログイン時のユーザーの質問アクション
-Route::get('questions/{id}', 'QuestionsController@index')->name('question.titles');
+Route::get('questions', 'QuestionsController@index')->name('question.titles');
 Route::get('questions/{id}', 'QuestionsController@show')->name('question.content');
 
 Route::group(['middleware' => ['auth']], function() {
@@ -31,7 +31,9 @@ Route::group(['middleware' => ['auth']], function() {
     
     //ログイン時のユーザーの質問アクション
     Route::resource('questions', 'QuestionsController', ['only' => ['store','destroy']]);
-    Route::get('questions/create', 'UsersController@question')->name('user.question');
+    Route::get('question', 'UserQuestionController@question')->name('user.question');
+    Route::get('loginquestions', 'QuestionsController@index')->name('loginquestion.titles');
+    Route::get('loginquestions/{id}', 'QuestionsController@show')->name('loginquestion.content');
     
 });
 
