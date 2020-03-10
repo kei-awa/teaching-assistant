@@ -5,24 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Question;
+use App\Answer;
 
 class QuestionsController extends Controller
 {
     public function index()
     {
-        
-        $questions = Question::all();
-        $titles = Question::select('title')->get();
-        $title = Question::select('id');
-        
-        return view('questions.titles',[
-            'questions' => $questions,
-            'titles' => $titles,
-            ]);
+        /*if (\Auth::check()) {
+            $user = \Auth::user();
+            $questions = $user->questions()->get();
+            $titles = $user->questions()->select('title')->get();
+            $titles = $user->questions()->select('id');
+            
+            return view('questions.titles',[
+                'questions' => $questions,
+                'titles' => $titles,
+                ]);
+        } else {*/
+            $questions = Question::all();
+            $titles = Question::select('title')->get();
+            $title = Question::select('id');
+            
+            return view('questions.titles',[
+                'questions' => $questions,
+                'titles' => $titles,
+                ]);
+        //}
     }
     public function show($id)
     {
-        $question = Question::find($id);
+        $user = \Auth::user();
+        $question = $user->questions()->find($id);
         
         return view('questions.content',[
             'question' => $question,
@@ -51,5 +64,39 @@ class QuestionsController extends Controller
             delete ();
         }
         return view('questions.index');
+    }
+    public function titles ()
+    {
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $questions = $user->questions()->get();
+            $titles = $user->questions()->select('title')->get();
+            $titles = $user->questions()->select('id');
+            
+            return view('questions.titles',[
+                'questions' => $questions,
+                'titles' => $titles,
+                ]);
+        } /*else {
+            $questions = Question::all();
+            $titles = Question::select('title')->get();
+            $title = Question::select('id');
+            
+            return view('questions.titles',[
+                'questions' => $questions,
+                'titles' => $titles,
+                ]);
+        }*/
+    }
+    public function read($id)
+    {
+        $question = Question::find($id);
+        $answer = $question->answered()->get();
+        
+        
+        return view('questions.content',[
+            'question' => $question,
+            'answer' => $answer,
+            ]);
     }
 }

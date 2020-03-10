@@ -35,4 +35,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Article::class);
     }
+    public function answering()
+    {
+        return $this->belongsToMany(User::class , 'answers', 'user_id', 'question_id')->withPivot('content')->withTimestamps();
+    }
+    
+    
+    /*public function answer()
+    {
+        
+        $this->answered()->attach();
+        
+        return true;
+    }*/
 }

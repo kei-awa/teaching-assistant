@@ -20,7 +20,7 @@ Route::get('logout_articles/{id}', 'ArticlesController@read')->name('articles.co
 
     //ログアウト&ログイン時のユーザーの質問アクション
 Route::get('questions', 'QuestionsController@index')->name('question.titles');
-Route::get('questions/{id}', 'QuestionsController@show')->name('question.content');
+Route::get('questions/{id}', 'QuestionsController@read')->name('question.content');
 
 
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -37,10 +37,17 @@ Route::group(['middleware' => ['auth']], function() {
     //ログイン時のユーザーの質問アクション
     Route::resource('questions', 'QuestionsController', ['only' => ['store','destroy']]);
     Route::get('question', 'UserQuestionController@question')->name('user.question');
-    Route::get('loginquestions', 'QuestionsController@index')->name('loginquestion.titles');
+    Route::get('loginquestions', 'QuestionsController@titles')->name('loginquestion.titles');
     Route::get('loginquestions/{id}', 'QuestionsController@show')->name('loginquestion.content');
     //ログイン時記事投稿機能
     Route::resource('articles', 'UsersArticlesController');
+    
+    Route::group(['prefix' => 'questions/{id}'], function() {
+        Route::post('answer', 'AnswersController@store')->name('question.answer');
+        Route::get('answering', 'QuestionsController@answering')->name('question.answering');
+        
+    });
+    
     
 });
 

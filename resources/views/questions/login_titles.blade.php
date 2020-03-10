@@ -1,14 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
-    <h1>自分の投稿</h1>
     <ul class="listunstyled">
-        @foreach($articles as $article)
+        @foreach($questions as $question)
             <li class="media">
                 <div>
-                    <p>{!! link_to_route('articles.show', $article->title, ['id'=>$article->id]) !!}</p>
+                    <p>{!! link_to_route('question.content', $question->title, ['id'=>$question->id]) !!}</p>
                 </div>
             </li>
         @endforeach
-    </ul>
 @endsection
