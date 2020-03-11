@@ -34,6 +34,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', 'UsersController');
     
+    
     //ログイン時のユーザーの質問アクション
     Route::resource('questions', 'QuestionsController', ['only' => ['store','destroy']]);
     Route::get('question', 'UserQuestionController@question')->name('user.question');

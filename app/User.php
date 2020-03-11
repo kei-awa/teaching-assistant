@@ -41,35 +41,39 @@ class User extends Authenticatable
     }
     public function user_good()
     {
-        return $this->belongsToMany(User::class, 'article_good', 'user_id', 'article_id')->withTimestamps();
+        return $this->belongsToMany(Article::class, 'article_good', 'user_id', 'article_id')->withTimestamps();
+    }
+    public function article_good()
+    {
+        return $this->belongsToMany(Article::class, 'article_good', 'article_id', 'user_id');
     }
     
-    public function be_good($userId)
+    public function good($articleId)
     {
-        return $this->user_good()->where('article_id', $userId)->exists();
-    }
-    
-    public function good($userId)
-    {
-        $exist = be_good($userId);
+        $exist = $this->be_good($articleId);
         
         if ($exist) {
             return false;
         } else {
-            $this->user_good()->attach($userId);
+            $this->user_good()->attach($articleId);
             return true;
         }
     }
-    public function not_good($userId)
+    public function not_good($articleId)
     {
-        $exist = be_good($userId);
+        $exist = $this->be_good($articleId);
         
         if ($exist) {
-            $this->user_good()->detach($userId);
+            $this->user_good()->detach($articleId);
             return true;
         } else {
             return false;
         }
+    
+    }
+    public function be_good($articleId)
+    {
+        return $this->user_good()->where('article_id', $articleId)->exists();
     }
     /*public function answer()
     {
