@@ -45,9 +45,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'questions/{id}'], function() {
         Route::post('answer', 'AnswersController@store')->name('question.answer');
         Route::get('answering', 'QuestionsController@answering')->name('question.answering');
-        
     });
     
-    
+     Route::group(['prefix' => 'articles/{id}'], function() {
+       Route::post('good', 'UsersGoodContoller@store')->name('user.good');
+       Route::delete('not_good', 'UsersGoodController@destroy')->name('user.not_good');
+    });
 });
 

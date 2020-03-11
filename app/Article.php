@@ -13,4 +13,8 @@ class Article extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function article_good()
+    {
+        return $this->belongsToMany(Article::class, 'article_good', 'article_id', 'user_id');
+    }
 }

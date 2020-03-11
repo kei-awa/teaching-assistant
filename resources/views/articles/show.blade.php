@@ -25,10 +25,13 @@
         <div class ="row">
             <h3>{{ $article->reference }}</h3>
         </div>
-        <div class="row row border-top">
+        <div class="rowborder-top">
             {{ $article->user->name }}
         </div>
-        <div class="mt-2">
+        <div class="row mt-2">
             {{ $article->user->profile }}
+        </div>
+        <div class="row">
+                @include('articles.good_button', 'user' => Auth::user())
         </div>
 @endsection

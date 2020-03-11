@@ -39,8 +39,38 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class , 'answers', 'user_id', 'question_id')->withPivot('content')->withTimestamps();
     }
+    public function user_good()
+    {
+        return $this->belongsToMany(User::class, 'article_good', 'user_id', 'article_id')->withTimestamps();
+    }
     
+    public function be_good($userId)
+    {
+        return $this->user_good()->where('article_id', $userId)->exists();
+    }
     
+    public function good($userId)
+    {
+        $exist = be_good($userId);
+        
+        if ($exist) {
+            return false;
+        } else {
+            $this->user_good()->attach($userId);
+            return true;
+        }
+    }
+    public function not_good($userId)
+    {
+        $exist = be_good($userId);
+        
+        if ($exist) {
+            $this->user_good()->detach($userId);
+            return true;
+        } else {
+            return false;
+        }
+    }
     /*public function answer()
     {
         

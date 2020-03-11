@@ -31,4 +31,7 @@
         <div class="mt-2">
             {{ $article->user->profile }}
         </div>
+        <div class="row">
+                @include('articles.good_button', ['user' => Auth::user()])
+        </div>
 @endsection

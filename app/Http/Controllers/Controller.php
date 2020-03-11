@@ -14,9 +14,11 @@ class Controller extends BaseController
     public function counts($user)
     {
         $count_questions = $user->questions()->count();
+        $count_articles = $user->user_good()->count();
         
         return [
             'count_questions' => $count_questions,
+            'count_articles' => $count_articles,
             ];
     }
 }
