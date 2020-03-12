@@ -23,6 +23,7 @@ Route::get('questions', 'QuestionsController@index')->name('question.titles');
 Route::get('questions/{id}', 'QuestionsController@read')->name('question.content');
 
 
+
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
@@ -50,7 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
     
      Route::group(['prefix' => 'articles/{id}'], function() {
        Route::post('good', 'UsersGoodContoller@store')->name('user.good');
-       Route::delete('not_good', 'UsersGoodController@destroy')->name('user.not_good');
+       Route::delete('not_good', 'UsersGoodContoller@destroy')->name('user.not_good');
     });
 });
 

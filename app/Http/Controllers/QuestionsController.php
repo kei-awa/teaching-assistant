@@ -91,12 +91,13 @@ class QuestionsController extends Controller
     public function read($id)
     {
         $question = Question::find($id);
-        $answer = $question->answered()->get();
+        $question_id = $question->id;
+        $answers = Answer::where('question_id','=',$question_id)->get();
         
         
         return view('questions.content',[
             'question' => $question,
-            'answer' => $answer,
+            'answers' => $answers,
             ]);
     }
 }
