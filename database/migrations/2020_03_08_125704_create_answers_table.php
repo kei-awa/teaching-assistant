@@ -18,7 +18,7 @@ class CreateAnswersTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->integer('question_id')->unsigned()->index();
             $table->string('content');
-            $table->string('best_answer')->nullable();
+            $table->integer('best_answer')->default(0);
             $table->timestamps();
     
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
