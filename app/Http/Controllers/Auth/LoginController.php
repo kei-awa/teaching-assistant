@@ -36,7 +36,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    protected function redirectTo($id)
+    /*protected function redirectTo($id)
     {
         $user = User::find($id);
         $emaail = $user->email;
@@ -48,5 +48,5 @@ class LoginController extends Controller
             'password' => $password,
             
         ]);
-    }
+    }*/
 }

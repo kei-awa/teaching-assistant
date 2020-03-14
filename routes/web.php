@@ -41,13 +41,17 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('question', 'UserQuestionController@question')->name('user.question');
     Route::get('loginquestions', 'QuestionsController@titles')->name('loginquestion.titles');
     Route::get('loginquestions/{id}', 'QuestionsController@show')->name('loginquestion.content');
+    Route::put('answers/{id}/best_answer', 'AnswersController@best_answer')->name('question.best_answer');
     //ログイン時記事投稿機能
     Route::resource('articles', 'UsersArticlesController');
     
     Route::group(['prefix' => 'questions/{id}'], function() {
         Route::post('answer', 'AnswersController@store')->name('question.answer');
         Route::get('answering', 'QuestionsController@answering')->name('question.answering');
+       
     });
+    
+    
     
      Route::group(['prefix' => 'articles/{id}'], function() {
        Route::post('good', 'UsersGoodContoller@store')->name('user.good');

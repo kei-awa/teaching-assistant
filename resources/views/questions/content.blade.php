@@ -7,7 +7,5 @@
         <h3>{{ $question->content }}</h3>
     </div>
     @include('answers.readanswer', ['answers'=>$answers])
-    @if (Auth::check())
-        @include('answers.answer', ['question' => $question])
-    @endif
+    @include('answers.answer', ['question' => $question])
 @endsection

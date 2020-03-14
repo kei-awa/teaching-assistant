@@ -6,4 +6,6 @@
     <div class="row">
         {{ $question->content }}
     </div>
+    @include('answers.readanswer', ['answer'=>$answer])
+    @include('answers.answer', ['question' => $question])
 @endsection

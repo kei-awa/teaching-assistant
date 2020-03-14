@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Question;
-
+use App\Answer;
+use DB;
 
 class AnswersController extends Controller
 {
@@ -18,5 +19,16 @@ class AnswersController extends Controller
             
             return back();
         }
+    }
+    public function best_answer(Request $request, $id) 
+    {
+        $answer = Answer::find($id);
+        
+        
+        $answer->increment('best_answer');
+        $answer->save();
+        //DB::table('answers')->increment('best_answer');
+        
+        return back();
     }
 }
